@@ -55,16 +55,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String cityName = "City Name";
 
-  void _incrementCounter() {
+  void _setCityName(String name) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      cityName = name;
     });
   }
 
@@ -105,20 +100,28 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            TextField(
+              decoration: InputDecoration(labelText: "Input City Name"),
+              onSubmitted: _setCityName,
+            ),
+            ElevatedButton(
+            onPressed: null,
+            child: const Text('Fetch Weather'),
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+              'City Name: ',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            Text(
+              'Temperature: ',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            Text(
+              'Weather Conditions: ',
+              style: TextStyle(fontSize: 20.0),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
