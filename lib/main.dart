@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'dart:math';
 void main() {
   runApp(const MyApp());
 }
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Weather App',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -56,10 +56,25 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String cityName = "City Name";
-
+  int temperature = 0;
+  String weather = "";
+  List Weather = ['sunny','cloudy','rainy'];
   void _setCityName(String name) {
     setState(() {
       cityName = name;
+    });
+  }
+  void _getTemperature() {
+    setState(() {
+      // var temperature = Random().nextInt(10);
+      temperature = Random().nextInt(15) + 15;
+    });
+  }
+
+  void _getWeather() {
+    setState(() {
+     Weather.shuffle();
+    //  = Weather.elementAt(Random().nextInt(weather.length));
     });
   }
 
@@ -105,19 +120,22 @@ class _MyHomePageState extends State<MyHomePage> {
               onSubmitted: _setCityName,
             ),
             ElevatedButton(
-            onPressed: null,
+            onPressed: (){
+              _getTemperature();
+              _getWeather();
+            },
             child: const Text('Fetch Weather'),
             ),
             Text(
-              'City Name: ',
+              'City Name: $cityName',
               style: TextStyle(fontSize: 20.0),
             ),
             Text(
-              'Temperature: ',
+              'Temperature: $temperature',
               style: TextStyle(fontSize: 20.0),
             ),
             Text(
-              'Weather Conditions: ',
+              'Weather Conditions: $weather',
               style: TextStyle(fontSize: 20.0),
             ),
           ],
